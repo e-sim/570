@@ -20,20 +20,17 @@ for line in LEXICON:
     pos_tag = line.split()[1]
 
     for letter in word:
-        if len(word) == 1:
-            print('(q0 (F "' + letter + '" ' + pos_tag + '))')
-           # print("(F (q0 *e*))")
-
-        elif letter is word[0]:
-            print('(q0 (q' + str(st_counter + 1) + ' "' + letter + '" *e*))')
+        if letter is word[0]:
+            print('(q0 (q' + str(st_counter + 1) + ' ' + letter + ' *e*))')
 
         #last letter
-        elif letter is word[len(word)-1]:
-            print('(q' + str(st_counter) + ' (F "' + letter + '" ' + pos_tag + '))')
+        #elif letter is word[len(word)-1]:
+        #    print('(q' + str(st_counter) + ' (F "' + letter + '" ' + pos_tag + '))')
 
         else:
-            print('(q' + str(st_counter) + ' (q' + str(st_counter + 1) + ' "' + letter + '" *e*))')
+            print('(q' + str(st_counter) + ' (q' + str(st_counter + 1) + ' ' + letter + ' *e*))')
 
         st_counter += 1
+    print('(q' + str(st_counter) + ' (F *e* ' + pos_tag + '))')
 
 print("(F (q0 *e*))")
